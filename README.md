@@ -94,3 +94,21 @@ Run the test suite:
 ```bash
 go test -v ./...
 ```
+
+## Prompt (Gemini 3.8 Flash · high)
+
+Write a program in Go called `tritone` that inputs a sound file, divides
+it into short chunks (say maybe 20ms) and maybe with a little fade-in and
+fade-out on the edges, performs FFT to get its frequency spectrum for each
+short piece, and picks N (initially, N=3) strong peak frequencies (not
+too close to each other) to represent that chunk, noting their relative
+strengths, and aiming for some continuity.   The output is composed of
+playing those tones for each chunk, with a little fade-in and fade-out
+on the edges.  Support at least Mono Unsigned 16-bit integer audio,
+48000 samples per second.   Prefer github.com/mjibson/go-dsp/fft for
+the FFT code.
+
+If the input filename does not end with suffux .raw or .wav, use the
+`ffmpeg` command to try to convert it to a temporary .wav .  If the
+output is not specified, play it from a temporary .wav file with
+`mplayer` command.
